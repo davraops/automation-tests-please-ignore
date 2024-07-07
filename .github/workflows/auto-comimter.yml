@@ -18,8 +18,8 @@ jobs:
       - name: Make a change
         run: |
           echo "Commit at $(date)" >> auto_commit.txt
-          git config --global user.name 'your-username'
-          git config --global user.email 'your-email@example.com'
+          git config --global user.name 'Rafael Avella'
+          git config --global user.email 'davraops@gmail.com'
           git add auto_commit.txt
           git commit -m "Automated commit"
       
