@@ -24,5 +24,8 @@ jobs:
           git commit -m "Automated commit"
       
       - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
-          git push
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          git push origin HEAD:main
