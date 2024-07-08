@@ -15,13 +15,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Make a change
+      - name: Make multiple changes and commit randomly
         run: |
           echo "Commit at $(date)" >> auto_commit.txt
           git config --global user.name 'Rafael Avella'
           git config --global user.email 'davraops@gmail.com'
-          git add auto_commit.txt
-          git commit -m "Automated commit"
+          
+          # Generate a random number between 1 and 10
+          num_commits=$((RANDOM % 10 + 1))
+          
+          # Commit the specified number of times
+          for ((i = 1; i <= num_commits; i++))
+          do
+            echo "Commit #$i at $(date)" >> auto_commit.txt
+            git add auto_commit.txt
+            git commit -m "Automated commit #$i"
+          done
       
       - name: Push changes
         run: |
